@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Boot()
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\n\ Act\ -\ do\ whatever\ the\ boot\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment2.params=loods
+comment2.target=void\ move(Loods)
+comment3.params=loods
+comment3.target=void\ setLoods(Loods)
+numComments=4
