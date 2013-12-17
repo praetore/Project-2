@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.params=
-comment0.target=Zee()
-comment0.text=\r\n\ dit\ tekent\ de\ zee\r\n
+comment0.target=Parkeerplaats()
+comment0.text=\r\n\ dit\ tekent\ de\ parkeerplaats\r\n
 comment1.params=
 comment1.target=void\ act()
 numComments=2

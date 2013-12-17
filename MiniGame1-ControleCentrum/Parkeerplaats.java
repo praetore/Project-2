@@ -1,20 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Zee here.
+ * Write a description of class P1 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Zee extends Actor
+public class Parkeerplaats extends Actor
 {
     /*
-     * dit tekent de zee
+     * dit tekent de parkeerplaats
      */
-    public Zee()
+    public Parkeerplaats()
     {
-        getImage().scale((int) Haven.bloksizeX,(int) Haven.bloksizeY);
-        getImage().drawRect(0,0,(int) Haven.bloksizeX,(int) Haven.bloksizeY);
+        getImage().scale((int) Haven.bloksizeX,(int) Haven.bloksizeY);        
     }
     public void act() 
     {
