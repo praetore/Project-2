@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ setSound()
+comment1.params=
+comment1.target=boolean\ getSound()
+comment2.params=
+comment2.target=Startmenu()
+comment2.text=\r\n\ Constructor\ for\ objects\ of\ class\ Startmenu.\r\n\ \r\n
+numComments=3
