@@ -8,10 +8,10 @@
 # Eclipse
 .classpath
 .project
-settings/
+.settings/
 
 # Intellij
-idea/
+.idea/
 *.iml
 *.iws
 
