@@ -34,7 +34,7 @@ public class Container extends Actor
         if (Greenfoot.mouseClicked(this)) {
             if (!getOpgepakt()) {
             haven.kraan.moveTo(this);
-                setOpgepakt(true);
+             setOpgepakt(true);
             }
 
 

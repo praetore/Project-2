@@ -13,7 +13,9 @@ public class Kraan extends Actor
     public Actor target;
 
      public void moveTo(Actor actor) {
+        if (!c1.getOpgepakt()) {
         target = actor;
+        }
 
     }
     
