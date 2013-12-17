@@ -1,5 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+import java.util.List;
+
 /**
  * Write a description of class Kraan here.
  * 
@@ -9,49 +11,43 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Kraan extends Actor
 {
-   public Container c1;
-    public Actor target;
+    private Container container;
 
-     public void moveTo(Actor actor) {
-        if (!c1.getOpgepakt()) {
-        target = actor;
-        }
-
+    public void act() {
+        moveToContainer();
+        grab();
     }
-    
-     public void act() {
-        moveToTarget();
-         Haven haven = (Haven)this.getWorld();
-        if (haven.vrachtwagen.container != null) {
 
-        target = null;
-            try {
-            c1.setOpgepakt(false);
-            } catch (Exception e) {
-
+    private void moveToContainer() {
+        Container target = null;
+        List containers = getWorld().getObjects(Container.class);
+        for (Object i : containers) {
+            Container container = (Container) i;
+            if (container.isSelected()) {
+                target = container;
             }
         }
 
-    }
-
-
-
-    public void moveToTarget() {
-
         if(target != null) {
-
             if(target.getX() < this.getX()) {
                 move(-1);
             } else if(target.getX() > this.getX()) {
                 move(1);
-                
-            
+            }
         }
+    }
 
+    private void grab() {
+        if (container != null) {
+            container.setOpgepakt(false);
         }
+    }
 
-        
-       
+    private boolean hasContainer() {
+        boolean hasContainer;
+        if (container == null) hasContainer = false;
+        else hasContainer = true;
+        return hasContainer;
     }
 }
 

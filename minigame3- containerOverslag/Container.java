@@ -6,28 +6,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-
-
-
 public class Container extends Actor
 {
-   private boolean opgepakt = false;
-   private Kraan kraan;
+    private boolean opgepakt = false;
+    private boolean selected;
+    private Kraan kraan;
 
-   public void act() {
-
+    public void act() {
       checkOnclick();
       checkOpgepakt();
-      moveToTarget();
-
     }
-
-    private void moveToTarget() {
-
-
-
-}
-
 
     private void checkOnclick() {
         Haven haven = (Haven)this.getWorld();
@@ -36,54 +24,38 @@ public class Container extends Actor
             haven.kraan.moveTo(this);
              setOpgepakt(true);
             }
-
-
-
-
-
-
         }
-
-
     }
 
-    public void checkOpgepakt() {
+    private void checkOpgepakt() {
         try {
-    if (getOpgepakt()) {
-            Haven haven = (Haven)this.getWorld();
-            int x = haven.kraan.getX();
-            int y = haven.kraan.target.getY();
+            if (getOpgepakt()) {
+                Haven haven = (Haven)this.getWorld();
+                int x = haven.kraan.getX();
+                int y = haven.kraan.target.getY();
 
-        if (getY() < y) {
-            setLocation(x,getY()+1);
-        }
+                if (getY() < y) {
+                    setLocation(x,getY()+1);
+                }
 
-        if (getY() > y) {
-
-            setLocation(x,getY()-1);
-        }
-
-
-
-
-
-        }
+                if (getY() > y) {
+                    setLocation(x,getY()-1);
+                }
+            }
         } catch(Exception e) {
-           setOpgepakt(false);
+            setOpgepakt(false);
         }
     }
 
+    public void setOpgepakt(boolean value) {
+        opgepakt = value;
+    }
 
+    public boolean getOpgepakt() {
+        return opgepakt;
+    }
 
-
-
-
-public void setOpgepakt(boolean value) {
-   opgepakt = value;
-}
-
-public boolean getOpgepakt() {
-    return opgepakt;
-}
-
+    public boolean isSelected() {
+        return selected;
+    }
 }
