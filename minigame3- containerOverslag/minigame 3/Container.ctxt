@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ act()
+comment1.params=
+comment1.target=void\ moveToTarget()
+comment2.params=
+comment2.target=void\ checkOnclick()
+comment3.params=
+comment3.target=void\ checkOpgepakt()
+comment4.params=value
+comment4.target=void\ setOpgepakt(boolean)
+comment5.params=
+comment5.target=boolean\ getOpgepakt()
+numComments=6
