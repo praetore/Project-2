@@ -29,9 +29,9 @@ public class WayPoint extends Actor
     }
 
     private void checkShipRequest() {
-        Boot boot = (Boot) getOneIntersectingObject(Boot.class);
+        Vrachtschip boot = (Vrachtschip) getOneIntersectingObject(Vrachtschip.class);
         if (boot != null && wayPointNo == 0) {
-            boot.moveToNxtPoint();
+            boot.moveToFirstPoint();
         }
     }
 }
