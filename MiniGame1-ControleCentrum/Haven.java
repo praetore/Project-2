@@ -50,29 +50,20 @@ public class Haven extends World
                 
         addObject(loods,(int)(1* bloksizeX + bloksizeX /2),(int)(14* bloksizeY + bloksizeY /2));
         addObject(new Boot(),(int)(1* bloksizeX + bloksizeX /2),(int)(1* bloksizeY + bloksizeY /2));
-        
-        /*
-        for(double x=0;x<aantalX;x++)
-            for(double y=0; y<aantalY/8*3;y++)
-                addObject(new Water(),(int)(x*bloksizeX+bloksizeX/2),(int)(y*bloksizeY+bloksizeY/2));
-
-        addObject(new Boot.java(bloksizeX*4,bloksizeY*2),(int)(bloksizeX*2+bloksizeX*4/2),(int)(bloksizeY*1+bloksizeY*2/2)  );
-        for(double x=0;x<aantalX;x++)
-            for(double y=aantalY/8*3; y<aantalY/8*6;y++)
-                addObject(new Dijk(),(int)(x*bloksizeX+bloksizeX/2),(int)(y*bloksizeY+bloksizeY/2));
-        for(double x=0;x<aantalX;x++)
-            for(double y=aantalY/8*7; y<aantalY/8*8;y++)
-                addObject(new Gras(),(int)(x*bloksizeX+bloksizeX/2),(int)(y*bloksizeY+bloksizeY/2));
-        for(double x=0;x<aantalX;x++)
-            for(double y=aantalY/8*6; y<aantalY/8*7;y++)
-                addObject(new Rails(),(int)(x*bloksizeX+bloksizeX/2),(int)(y*bloksizeY+bloksizeY/2));
-        for(double x=aantalX/8*2;x<aantalX/8*6;x++)
-            for(double y=aantalY/8*1; y<((aantalY/8)*3);y++)
-                addObject(new Container(),(int)(x*bloksizeX+bloksizeX/2),(int)(y*bloksizeY+bloksizeY/2));
-                
-        addObject(new Kraan(),(int)(5*bloksizeX+bloksizeX/2),(int)(5*bloksizeY+bloksizeY/2));
-        */
     }
+
+    /**
+     * Een nieuwe schip spawnt vanaf de bovenkant en wacht totdat hij geloodsd kan worden.
+     */
+    private void spawnShip() {
+        int spawnChance = 40;
+
+        if (Greenfoot.getRandomNumber(spawnChance) == 1) {
+            int randomX = Greenfoot.getRandomNumber(getWidth());
+            addObject(new Vrachtschip(), randomX, 0);
+        }
+    }
+
     public double getBloksizeX()
     {
         return bloksizeX;

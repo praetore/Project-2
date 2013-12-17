@@ -9,9 +9,6 @@ import java.util.List;
  */
 public class Boot extends Actor
 {
-    
-    
-    
     public boolean hasLoods = false;
     private int x,y;
     private int moveDelay = Haven.MOVEDELAY/10;
