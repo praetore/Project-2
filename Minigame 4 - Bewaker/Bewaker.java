@@ -1,6 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 /**
  * Write a description of class Bewaker here.
  * 
@@ -27,9 +26,8 @@ public class Bewaker extends Actor
     {
         if(first)
         {
-            getWorld().addObject(new Licht(1,1),0,0);
-            getWorld().addObject(new Licht(2,1),0,0);
-            getWorld().addObject(new Licht(3,1),0,0);
+            //getWorld().addObject(new Licht(2,1),0,0);
+            //getWorld().addObject(new Licht(3,1),0,0);
             x = this.getX();
             y = this.getY();
             first = false;

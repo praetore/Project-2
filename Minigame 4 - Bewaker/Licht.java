@@ -20,16 +20,6 @@ public class Licht extends Actor
     }   
     public void act() 
     {
-        Bewaker bewaker = Containeropslag.bewaker;
-        Fog fog = Containeropslag.fog;
-        int tempx = bewaker.getX();
-        int tempy = bewaker.getY();
-        double distance = Math.hypot((int)(Containeropslag.bloksizeX*x),(int)(Containeropslag.bloksizeY*y));
-        tempx += Math.cos(Math.toRadians(bewaker.getRotation())) * (int)distance;
-        tempy -= Math.sin(Math.toRadians(bewaker.getRotation())) * (int)distance;
-        try
-        {
-            fog.getImage().setColorAt(tempx,tempy,new Color(0,0,0,1));
-        }catch(Exception e){}
+        
     }
 }

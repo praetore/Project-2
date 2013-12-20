@@ -3,4 +3,6 @@ comment0.params=
 comment0.target=Containeropslag()
 comment1.params=
 comment1.target=void\ maakObjecten()
-numComments=2
+comment2.params=x\ y
+comment2.target=void\ maak(int,\ int)
+numComments=3

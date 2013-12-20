@@ -26,12 +26,25 @@ public class Containeropslag extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(scherm[0], scherm[1], 1); 
+        maak(400,200);
+        maak(200,200);
         maakObjecten();
-    }
+
+    }
+
     public void maakObjecten()
     {
         addObject(fog,scherm[0]/2,scherm[1]/2);
         addObject(bewaker,100,100);
     }
-    
+
+    public void maak(int x,int y)
+    {
+        addObject(new Container(),x,y);
+    }
+
+    /**
+     * Prepare the world for the start of the program. That is: create the initial
+     * objects and add them to the world.
+     */
 }
