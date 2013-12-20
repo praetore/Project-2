@@ -1,13 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+
 /**
  * Write a description of class Containeropslag here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Containeropslag extends World implements KeyListener
+public class Containeropslag extends World
 {
 
     /**
@@ -21,6 +20,8 @@ public class Containeropslag extends World implements KeyListener
     public static final double bloksizeY = scherm[1]/20; //getHeight()/10;
     public static final double aantalX = scherm[0]/ bloksizeX;
     public static final double aantalY = scherm[1]/ bloksizeY;
+    public static Bewaker bewaker = new Bewaker();
+    public static Fog fog = new Fog();
     public Containeropslag()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -29,25 +30,8 @@ public class Containeropslag extends World implements KeyListener
     }
     public void maakObjecten()
     {
-        addObject(new Bewaker(),100,100);
-    }
-    public void keyPressed(KeyEvent e){
-            int keyCode = e.getKeyCode();
-            if(keyCode >0 )
-            {
-                System.out.println(KeyEvent.VK_W+" "+keyCode);
-                key[keyCode] = true;
-            }
-    }
-    public void keyReleased(KeyEvent e){
-            int keyCode = e.getKeyCode();
-            if(keyCode >0 && keyCode <key.length)
-            {
-                key[keyCode] = false;
-            }
-    }
-
-    public void keyTyped(KeyEvent e) {
+        addObject(fog,scherm[0]/2,scherm[1]/2);
+        addObject(bewaker,100,100);
     }
     
 }
