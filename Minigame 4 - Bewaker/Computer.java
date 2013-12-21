@@ -1,28 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.List;
+import java.util.Random;
 /**
- * Write a description of class Bewaker here.
+ * Write a description of class Computer here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-
-public class Bewaker extends Actor
+public class Computer extends Actor
 {
-    
-    /**
-     * Act - do whatever the Bewaker wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     private final int TURNSPEED = 2;
     private final int SPEED = 1;
     private final int OBJECTDISTANCE = 10;
     private double x,y;
     private int rotation = 0;
     private boolean first = true;
-    public Bewaker()
-    {
-    }
+    private int keuze = 0;
+    private boolean timerover = true;
+    private int timer = 0;
+    private int time;
+    Random rand = new Random();
     public void act() 
     {
         if(first)
@@ -34,24 +30,29 @@ public class Bewaker extends Actor
             y = this.getY();
             first = false;
         }
+        if(timerover)
+        {
+            time = rand.nextInt(20)+20;
+            keuze = rand.nextInt(4);
+            timerover = false;
+        }
         
-        
-        if(Greenfoot.isKeyDown("w"))
+        if(keuze == 0)
         {
             x += Math.cos(Math.toRadians(rotation)) * SPEED;
             y -= Math.sin(Math.toRadians(rotation)) * SPEED;
         }
-        if(Greenfoot.isKeyDown("s"))
+        /*else if(keuze == 1)
         {
             x -= Math.cos(Math.toRadians(rotation)) * SPEED;
             y += Math.sin(Math.toRadians(rotation)) * SPEED;
-        }
-        if(Greenfoot.isKeyDown("a"))
+        }*/
+        else if(keuze == 2)
         {
             turn(-TURNSPEED);
             rotation = (rotation+TURNSPEED)%360;
         }
-        if(Greenfoot.isKeyDown("d"))
+        else if(keuze == 3)
         {
             turn(TURNSPEED);
             rotation = (rotation-TURNSPEED)%360;
@@ -67,9 +68,16 @@ public class Bewaker extends Actor
         }
         
         setLocation((int)x,(int)y);
+        timer++;
+        if(timer == time)
+        {
+            timerover = true;
+            timer = 0;
+        }
     }  
     public int getRotation()
     {
         return rotation;
     }    
 }
+

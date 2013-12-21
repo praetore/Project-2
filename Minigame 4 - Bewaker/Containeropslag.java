@@ -22,6 +22,7 @@ public class Containeropslag extends World
     public static final double aantalY = scherm[1]/ bloksizeY;
     public static Bewaker bewaker = new Bewaker();
     public static Fog fog = new Fog();
+    boolean fogOn = true;
     public Containeropslag()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -30,12 +31,17 @@ public class Containeropslag extends World
         maak(200,200);
         maakObjecten();
 
-    }
+    }
+
 
     public void maakObjecten()
     {
-        addObject(fog,scherm[0]/2,scherm[1]/2);
+        if(fogOn)
+        {
+            addObject(fog,scherm[0]/2,scherm[1]/2);
+        }
         addObject(bewaker,100,100);
+        addObject(new Computer(),300,300);
     }
 
     public void maak(int x,int y)
