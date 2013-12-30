@@ -1,5 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Write a description of class Boot here.
  * 
@@ -8,12 +10,49 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Boot extends Actor
 {
+   public  List containers;
+   public  List<Integer> gewichtArray = new ArrayList<Integer>();
+    public int rand;
+    private double balance;
     /**
      * Act - do whatever the Boot wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public double getAngle() {
+        return balance - 118;
+    }
+
     public void act() 
     {
-        // Add your action code here.
-    }    
+
+
+      //  System.out.println(rand);
+
+    }
+
+
+
+
+    public int getFirst() {
+        return gewichtArray.get(0);
+    }
+
+    public void checkIntersectingObject() {
+        containers = getIntersectingObjects(Container.class);
+
+        for(Object o : containers) {
+            Container c = (Container)o;
+            // voor de volgorde van het pakken
+            gewichtArray.add(c.getWeight());
+
+
+
+
+        }
+    }
 }

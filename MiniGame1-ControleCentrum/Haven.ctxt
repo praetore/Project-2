@@ -2,7 +2,10 @@
 comment0.params=
 comment0.target=Haven()
 comment1.params=
-comment1.target=double\ getBloksizeX()
+comment1.target=void\ spawnShip()
+comment1.text=\r\n\ Een\ nieuwe\ schip\ spawnt\ vanaf\ de\ bovenkant\ en\ wacht\ totdat\ hij\ geloodsd\ kan\ worden.\r\n
 comment2.params=
-comment2.target=double\ getBloksizeY()
-numComments=3
+comment2.target=double\ getBloksizeX()
+comment3.params=
+comment3.target=double\ getBloksizeY()
+numComments=4

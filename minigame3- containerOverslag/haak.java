@@ -1,19 +1,84 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class haak here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class haak extends Actor
+
+public class Haak extends Actor
 {
-    /**
-     * Act - do whatever the haak wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private int speed;
+    public Container container;
+    public Container selected;
+    private boolean haveContainer = false;
+    public boolean atTarget = false;
+
+
     public void act() 
     {
-        // Add your action code here.
-    }    
+        volgKraan();
+        setSpeed();
+        checkForContainer();
+    }
+
+    private void checkForContainer() {
+        try {
+        if (selected != null) {
+        if (getY() == selected.getY() && getX() == selected.getX()) {
+            setHaveContainer(true);
+
+        }
+
+        if (getY() != selected.getY() || getX() != selected.getX()) {
+            setHaveContainer(false);
+        }
+        }
+        } catch (Exception e){}
+
+    }
+
+
+    private void setSpeed() {
+
+        if (getHaveContainer()) {
+            speed =  selected.getWeight() / 2;
+        }
+
+    }
+
+    private void volgKraan() {
+        Haven haven = (Haven)this.getWorld();
+        int x = haven.kraan.getX();
+
+        try {
+            int y = haven.kraan.target.getY();
+
+            if (y < getY()) {
+                setLocation(x,getY()-1);
+
+            }
+            if (y > getY()) {
+                setLocation(x, getY() + 1);
+            }
+
+        } catch(Exception e) {}
+        setLocation(x,getY());
+    }
+
+
+    public boolean getHaveContainer() {
+        return haveContainer;
+    }
+
+    public void setHaveContainer(boolean haveContainer) {
+        this.haveContainer = haveContainer;
+    }
+
+    public void setAtTarget(boolean atTarget) {
+        this.atTarget = atTarget;
+    }
+
+    public boolean getAtTarget() {
+        return atTarget;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
 }

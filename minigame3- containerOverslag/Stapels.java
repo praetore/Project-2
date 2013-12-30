@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Gras here.
+ * Write a description of class Stapels here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Gras extends Actor
+public class Stapels extends Actor
 {
     /**
-     * Act - do whatever the Gras wants to do. This method is called whenever
+     * Act - do whatever the Stapels wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 

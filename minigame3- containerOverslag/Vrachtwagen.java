@@ -7,19 +7,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 
-
 public class Vrachtwagen extends Actor
 {
-    private int aantalVrachtwagens = 1;
-    private Kraan kraan;
-    private Container container;
-    private int vrachtwagenSpeed = 1;
 
     /**
      * Act - do whatever the Vrachtwagen wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act()
+    private int aantalVrachtwagens = 1;
+    public Kraan kraan;
+    public Container container;
+    private int vrachtwagenSpeed = 1;
+    public void act() 
     {
         checkClicked();
         checkCollision();
@@ -27,15 +26,14 @@ public class Vrachtwagen extends Actor
         createNew();
     }
 
-    //voor aanmaken nieuwe vrachtwagens.
     private void createNew() {
+        //voor aanmaken nieuwe vrachtwagens.
         if (getAantalVrachtwagens() == 0) {
             setAantalVrachtwagens(1);
-            this.setLocation(200,500);
+            this.setLocation(200,360);
 
         }
     }
-
     //checken of de vrachtwagen als target wordt ingesteld
     private void checkClicked() {
         if (Greenfoot.mouseClicked(this)) {
@@ -43,14 +41,15 @@ public class Vrachtwagen extends Actor
             haven.kraan.moveTo(this);
 
         }
-    }
 
+    }
     //collision check met container
     private void checkCollision() {
         Container container = (Container) getOneIntersectingObject(Container.class);
         if (container != null) {
-
+            Haven haven = (Haven)this.getWorld();
             loadContainer(container);
+            haven.haak.setHaveContainer(false);
         }
     }
 
@@ -60,19 +59,26 @@ public class Vrachtwagen extends Actor
     }
 
     private void drive() {
+
         if (container != null) {
             setLocation(getX()-vrachtwagenSpeed, getY());
             container.setLocation(getX(),getY());
-        }
 
+        }
         //deleten van vrachtwagens en containers op de vrachtwagen
         if (getX() == 0) {
+            Haven haven = (Haven)this.getWorld();
             getWorld().removeObject(this.getOneIntersectingObject(Container.class));
             container = null;
-           setAantalVrachtwagens(0);
-        }
-    }
+            setAantalVrachtwagens(0);
+           haven.score.increaseScore();
 
+
+
+        }
+
+
+    }
     //getter en setter van het aantal vrachtwagens in het spel
     public int getAantalVrachtwagens() {
         return aantalVrachtwagens;
@@ -82,6 +88,5 @@ public class Vrachtwagen extends Actor
         this.aantalVrachtwagens = aantalVrachtwagens;
     }
 }
-
 
 

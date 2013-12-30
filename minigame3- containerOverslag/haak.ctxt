@@ -1,5 +1,20 @@
 #BlueJ class context
 comment0.params=
 comment0.target=void\ act()
-comment0.text=\r\n\ Act\ -\ do\ whatever\ the\ haak\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=1
+comment1.params=
+comment1.target=void\ checkForContainer()
+comment2.params=
+comment2.target=void\ setSpeed()
+comment3.params=
+comment3.target=void\ volgKraan()
+comment4.params=
+comment4.target=boolean\ getHaveContainer()
+comment5.params=haveContainer
+comment5.target=void\ setHaveContainer(boolean)
+comment6.params=atTarget
+comment6.target=void\ setAtTarget(boolean)
+comment7.params=
+comment7.target=boolean\ getAtTarget()
+comment8.params=
+comment8.target=int\ getSpeed()
+numComments=9

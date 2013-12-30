@@ -1,8 +1,8 @@
 #BlueJ class context
-comment0.params=
-comment0.target=void\ act()
+comment0.params=weight\ image
+comment0.target=Container(int,\ int)
 comment1.params=
-comment1.target=void\ moveToTarget()
+comment1.target=void\ act()
 comment2.params=
 comment2.target=void\ checkOnclick()
 comment3.params=
@@ -11,4 +11,6 @@ comment4.params=value
 comment4.target=void\ setOpgepakt(boolean)
 comment5.params=
 comment5.target=boolean\ getOpgepakt()
-numComments=6
+comment6.params=
+comment6.target=int\ getWeight()
+numComments=7

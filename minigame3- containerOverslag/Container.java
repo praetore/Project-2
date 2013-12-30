@@ -6,46 +6,109 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
+
+
 public class Container extends Actor
 {
     private boolean opgepakt = false;
-    private boolean selected;
     private Kraan kraan;
+    public int weight;
+    private int image;
+
+
+
+    public Container(int weight, int image) {
+        this.weight = weight;
+        this.image = image;
+
+        setImage(image + ".png");
+    }
 
     public void act() {
-      checkOnclick();
-      checkOpgepakt();
+
+        checkOnclick();
+        checkOpgepakt();
+
+
+
+
     }
+
+
+
 
     private void checkOnclick() {
         Haven haven = (Haven)this.getWorld();
+
         if (Greenfoot.mouseClicked(this)) {
-            if (!getOpgepakt()) {
+
+
             haven.kraan.moveTo(this);
-             setOpgepakt(true);
+
+            if (haven.haak.selected != null) {
+                haven.haak.setHaveContainer(false);
+                haven.haak.selected.setOpgepakt(false);
+                haven.haak.selected = null;
+
             }
+
+
+            if (haven.haak.selected == null) {
+                World world = getWorld();
+                int x = getX();
+                int y = getY();
+                world.removeObject(this);
+                world.addObject(this, x, y);
+                haven.haak.setHaveContainer(true);
+                haven.haak.selected = this;
+                haven.haak.selected.setOpgepakt(true);
+            }
+
+
+
+
+
         }
     }
 
-    private void checkOpgepakt() {
+
+
+
+    public void checkOpgepakt() {
         try {
             if (getOpgepakt()) {
                 Haven haven = (Haven)this.getWorld();
-                int x = haven.kraan.getX();
+                int x = haven.kraan.target.getX();
                 int y = haven.kraan.target.getY();
 
                 if (getY() < y) {
-                    setLocation(x,getY()+1);
+                    setLocation(getX(),getY()+1);
+                    Greenfoot.delay(haven.haak.getSpeed());
                 }
 
                 if (getY() > y) {
-                    setLocation(x,getY()-1);
+
+                    setLocation(getX(),getY()-1);
+                    Greenfoot.delay(haven.haak.getSpeed());
+                }
+
+                if (getX() < x) {
+                    setLocation(getX()+1,getY());
+                    Greenfoot.delay(haven.haak.getSpeed());
+                }
+
+                if (getX() > x) {
+
+                    setLocation(getX()-1,getY());
+                    Greenfoot.delay(haven.haak.getSpeed());
                 }
             }
         } catch(Exception e) {
-            setOpgepakt(false);
+
         }
     }
+
+
 
     public void setOpgepakt(boolean value) {
         opgepakt = value;
@@ -55,7 +118,8 @@ public class Container extends Actor
         return opgepakt;
     }
 
-    public boolean isSelected() {
-        return selected;
+    public int getWeight() {
+        return weight;
     }
+
 }
