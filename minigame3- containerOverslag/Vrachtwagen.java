@@ -14,78 +14,52 @@ public class Vrachtwagen extends Actor
      * Act - do whatever the Vrachtwagen wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    private Container currContainer;
     private int aantalVrachtwagens = 1;
     public Kraan kraan;
-    public Container container;
     private int vrachtwagenSpeed = 1;
-    public void act() 
+    int x,y;
+    public Vrachtwagen(int x,int y)
     {
-        checkClicked();
-        checkCollision();
-        drive();
-        createNew();
+        this.x = x;
+        this.y = y;
     }
-
-    private void createNew() {
-        //voor aanmaken nieuwe vrachtwagens.
-        if (getAantalVrachtwagens() == 0) {
-            setAantalVrachtwagens(1);
-            this.setLocation(200,360);
-
+    public Actor getIntersect(Class cl)
+    {
+        return getOneIntersectingObject(cl);
+    }
+    public void move(Container con)
+    {
+        currContainer = con;
+    }
+    public void act()
+    {
+        if(currContainer != null)
+        {
+            if(x<400)
+            {
+                setLocation(getX()-1,getY());
+            }
+            else
+            {
+                setLocation(getX()+1,getY());
+            }
+            currContainer.setLocation(getX(),getY());
         }
-    }
-    //checken of de vrachtwagen als target wordt ingesteld
-    private void checkClicked() {
-        if (Greenfoot.mouseClicked(this)) {
-            Haven haven = (Haven)this.getWorld();
-            haven.kraan.moveTo(this);
-
+        if(getX() <=1 || getX() >= getWorld().getWidth()-1)
+        {
+            Haven haven = (Haven)getWorld();
+            getWorld().removeObject(currContainer);
+            currContainer = null;
+            haven.score.increaseScore();
+            setLocation(x,y);
         }
-
-    }
-    //collision check met container
-    private void checkCollision() {
-        Container container = (Container) getOneIntersectingObject(Container.class);
-        if (container != null) {
-            Haven haven = (Haven)this.getWorld();
-            loadContainer(container);
-            haven.haak.setHaveContainer(false);
+        Container con = (Container)getIntersect(Container.class);
+        if(con!= null)
+        {
+            con.setOpgepakt(false,null);
+            this.move(con);
         }
-    }
-
-    private void loadContainer(Container container) {
-
-        this.container = container;
-    }
-
-    private void drive() {
-
-        if (container != null) {
-            setLocation(getX()-vrachtwagenSpeed, getY());
-            container.setLocation(getX(),getY());
-
-        }
-        //deleten van vrachtwagens en containers op de vrachtwagen
-        if (getX() == 0) {
-            Haven haven = (Haven)this.getWorld();
-            getWorld().removeObject(this.getOneIntersectingObject(Container.class));
-            container = null;
-            setAantalVrachtwagens(0);
-           haven.score.increaseScore();
-
-
-
-        }
-
-
-    }
-    //getter en setter van het aantal vrachtwagens in het spel
-    public int getAantalVrachtwagens() {
-        return aantalVrachtwagens;
-    }
-
-    public void setAantalVrachtwagens(int aantalVrachtwagens) {
-        this.aantalVrachtwagens = aantalVrachtwagens;
     }
 }
 

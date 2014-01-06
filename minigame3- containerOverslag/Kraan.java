@@ -9,48 +9,37 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Kraan extends Actor
 {
-    public Container c1;
-    public Actor target;
-    public Vrachtwagen v1;
-
-
-    public void moveTo(Actor actor) {
-        target = actor;
-    }
-
-
-    public void act() {
-        moveToTarget();
-
-        Haven haven = (Haven)this.getWorld();
-        if (haven.vrachtwagen.container != null) {
-            target = null;
-        }
-
-    }
-
-
-    public void moveToTarget() {
-
-        if(target != null) {
-
-            if(target.getX() < this.getX()) {
-                move(-1);
-            } else if(target.getX() > this.getX()) {
-                move(1);
-            }
+    public boolean atTarget = false;
+    public void goToTarget(Actor target)
+    {
+        if(target != null)
+        {
+            try{
+                if(getX() < target.getX())
+                {
+                    setLocation(getX()+1,getY());
+                }
+                if(getX() > target.getX())
+                {
+                    setLocation(getX()-1,getY());
+                }
+                if(getX() == target.getX())
+                {
+                    setAtTarget(true);
+                }
+                else
+                {
+                    setAtTarget(false);
+                }
+            }catch(Exception e){}
         }
     }
+    public void setAtTarget(boolean atTarget) {
+        this.atTarget = atTarget;
+    }
 
-    public void moveToVrachtwagen() {
-
-
-        if(target.getX() < this.getX()) {
-            move(-1);
-        } else if(target.getX() > this.getX()) {
-            move(1);
-
-        }
+    public boolean getAtTarget() {
+        return atTarget;
     }
 }
 

@@ -10,20 +10,28 @@ public class Haven extends World
 {
     int first;
     Boot boot = new Boot();
-    Haak haak = new Haak();
     Boot bootPC = new Boot();
-    Vrachtwagen vrachtwagen = new Vrachtwagen();
-    Vrachtwagen vrachtwagenPC = new Vrachtwagen();
+    Vrachtwagen vrachtwagen = new Vrachtwagen(200,360);
+    Vrachtwagen vrachtwagenPC = new Vrachtwagen(600,360);
     Plaats plaats = new Plaats();
     Kraan kraan = new Kraan();
     Kraan kraanPC = new Kraan();
+    
+    Haak haak = new Haak(kraan);
+    Haak haakPC = new Haak(kraanPC);
     VolgendeContainer label = new VolgendeContainer();
     Score score = new Score();
     private Boot bootie;
-    /**
-     * Constructor for objects of class Haven.
-     * 
-     */
+    
+    public static int afstandx = 50;
+    public static int afstandy = 20;
+    public static int beginx = 100;
+    public static int beginy = 130;
+    public static int aantalx = 5;
+    public static int aantaly = 5;
+    public static int aantalz = 3;
+    public static int pcbeginx = 500;
+    public static int pcbeginy = 130;
 
     public Boot getBoot() {
         return bootie;
@@ -54,6 +62,7 @@ public class Haven extends World
 
     addObject(new Balans(),50,50);
     addObject(vrachtwagen,200,360);
+    addObject(vrachtwagenPC,600,360);
     addObject(boot,190,170);
     addObject(bootPC,590,170);
     //addObject(new Stapels(),160,450);
@@ -70,7 +79,54 @@ public class Haven extends World
     // start x 100 tot 350
     // start y 130 - 230
     // image 1 heeft weight 1 enz..
-
+    
+    /* player
+     * hier wordt de boot van de speler gevult met containers
+     * op x = beginx+afstandx*n
+     * en y = beginy+afstandy*i
+     * beginx en beginy zijn de locatie van de meest linksboven container
+     * afstandx is de afstand die zit tussen de containers horizontaal
+     * afstandy is de afstand die zit tussen de containers verticaal
+     */
+    for(int i=0;i<aantaly;i++)
+    {
+        for(int n=0;n<aantalx;n++)
+        {
+            addObject(new Plaats(), beginx+afstandx*n,beginy+afstandy*i);
+        }
+    }
+    for(int a=0;a<aantalz;a++)
+    {
+        for(int i=0;i<aantaly;i++)
+        {
+            for(int n=0;n<aantalx;n++)
+            {
+                addObject(new Container(), beginx+afstandx*n,beginy+afstandy*i);
+            }
+        }
+    }
+        
+     /* computer
+      * voor uitleg zie player
+      */
+    
+    for(int a=0;a<aantalz;a++)
+    {
+        for(int i=0;i<aantaly;i++)
+        {
+            for(int n=0;n<aantalx;n++)
+            {
+                addObject(new Container(), pcbeginx+afstandx*n,pcbeginy+afstandy*i);
+            }
+        }
+    }
+     
+     
+     
+     
+     
+     
+     /*
         addObject(new Container(1, 1), 100,130);
         addObject( new Plaats() ,100,130);
         addObject(new Container(3, 3), 150,130);
@@ -158,10 +214,11 @@ public class Haven extends World
         addObject(new Container(7, 7), 600,210);
         addObject(new Container(8, 8), 650,210);
 
-
+*/
 
 
     addObject( haak,170,170);
+    addObject( haakPC,570,170);
     addObject(kraan,170,130);
     addObject(kraanPC,570,130);
 
@@ -169,9 +226,10 @@ public class Haven extends World
     boot.checkIntersectingObject();
     first = boot.getFirst();
 
-    System.out.println(boot.gewichtArray);
 
    addObject(score,100,550);
+   addObject(new Player(kraan,haak),100,650);
+   addObject(new Computer(kraanPC,haakPC,vrachtwagenPC),100,650);
 }
 }
 

@@ -1,18 +1,10 @@
 #BlueJ class context
-comment0.params=
-comment0.target=void\ act()
-comment1.params=
-comment1.target=void\ createNew()
-comment2.params=
-comment2.target=void\ checkClicked()
+comment0.params=x\ y
+comment0.target=Vrachtwagen(int,\ int)
+comment1.params=cl
+comment1.target=greenfoot.Actor\ getIntersect(java.lang.Class)
+comment2.params=con
+comment2.target=void\ move(Container)
 comment3.params=
-comment3.target=void\ checkCollision()
-comment4.params=container
-comment4.target=void\ loadContainer(Container)
-comment5.params=
-comment5.target=void\ drive()
-comment6.params=
-comment6.target=int\ getAantalVrachtwagens()
-comment7.params=aantalVrachtwagens
-comment7.target=void\ setAantalVrachtwagens(int)
-numComments=8
+comment3.target=void\ act()
+numComments=4

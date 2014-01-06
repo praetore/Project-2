@@ -23,9 +23,9 @@ public class Plaats extends Actor
 
     public void act() 
     {
-      onclick();
+      //onclick();
     }
-
+    /*
     private void onclick() {
         Haven haven = (Haven)this.getWorld();
         if (Greenfoot.mouseClicked(this)) {
@@ -47,7 +47,7 @@ public class Plaats extends Actor
 
         }
 
-    }
+    }*/
 
 
 

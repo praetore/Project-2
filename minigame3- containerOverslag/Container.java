@@ -14,6 +14,7 @@ public class Container extends Actor
     private Kraan kraan;
     public int weight;
     private int image;
+    private Haak haak;
 
 
 
@@ -23,95 +24,23 @@ public class Container extends Actor
 
         setImage(image + ".png");
     }
+    public Container() {
+        int randomnr= Greenfoot.getRandomNumber(8)+1;
+        this.weight = randomnr;
+        this.image = randomnr;
 
+        setImage(image + ".png");
+    }
     public void act() {
-
-        checkOnclick();
-        checkOpgepakt();
-
-
-
-
-    }
-
-
-
-
-    private void checkOnclick() {
-        Haven haven = (Haven)this.getWorld();
-
-        if (Greenfoot.mouseClicked(this)) {
-
-
-            haven.kraan.moveTo(this);
-
-            if (haven.haak.selected != null) {
-                haven.haak.setHaveContainer(false);
-                haven.haak.selected.setOpgepakt(false);
-                haven.haak.selected = null;
-
-            }
-
-
-            if (haven.haak.selected == null) {
-                World world = getWorld();
-                int x = getX();
-                int y = getY();
-                world.removeObject(this);
-                world.addObject(this, x, y);
-                haven.haak.setHaveContainer(true);
-                haven.haak.selected = this;
-                haven.haak.selected.setOpgepakt(true);
-            }
-
-
-
-
-
+        if(opgepakt)
+        {
+            setLocation(haak.getX(),haak.getY());
         }
     }
 
-
-
-
-    public void checkOpgepakt() {
-        try {
-            if (getOpgepakt()) {
-                Haven haven = (Haven)this.getWorld();
-                int x = haven.kraan.target.getX();
-                int y = haven.kraan.target.getY();
-
-                if (getY() < y) {
-                    setLocation(getX(),getY()+1);
-                    Greenfoot.delay(haven.haak.getSpeed());
-                }
-
-                if (getY() > y) {
-
-                    setLocation(getX(),getY()-1);
-                    Greenfoot.delay(haven.haak.getSpeed());
-                }
-
-                if (getX() < x) {
-                    setLocation(getX()+1,getY());
-                    Greenfoot.delay(haven.haak.getSpeed());
-                }
-
-                if (getX() > x) {
-
-                    setLocation(getX()-1,getY());
-                    Greenfoot.delay(haven.haak.getSpeed());
-                }
-            }
-        } catch(Exception e) {
-
-        }
-    }
-
-
-
-    public void setOpgepakt(boolean value) {
+    public void setOpgepakt(boolean value, Haak haak) {
         opgepakt = value;
+        this.haak = haak;
     }
 
     public boolean getOpgepakt() {
