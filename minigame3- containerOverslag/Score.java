@@ -33,8 +33,9 @@ public class Score extends Menu
         this.setImage(img);
     }
 
-    public void increaseScore() {
-        setScore(10);
+    public void increaseScore(int i) {
+        setScore(i);
+
     }
 
     public int getScore() {

@@ -20,6 +20,7 @@ public class Player extends Actor
     private Container currContainer;
     private final int COUNTDOWN = 1;
     private int timer = COUNTDOWN;
+      Haven haven = (Haven)getWorld();
     public Player(Kraan kraan,Haak haak)
     {
         this.kraan = kraan;
@@ -30,6 +31,7 @@ public class Player extends Actor
         info = Greenfoot.getMouseInfo();
         onClick();
         timer--;
+       
     }    
     public void onClick()
     {
@@ -64,25 +66,32 @@ public class Player extends Actor
                 {
                     if(currContainer != null)
                     {   
+                        Haven haven = (Haven)getWorld();
                         currContainer.setOpgepakt(false,null);
                         currContainer = null;
+                        haven.makeBalance();
                     }
                 }
                 else if(clicked.getClass() == Container.class)
                 {
                     if(currContainer == null)
                     {   
+                        Haven haven = (Haven)getWorld();
                         currContainer = (Container)clicked;
                         Container con = new Container(currContainer.getWeight(),currContainer.getWeight());
                         getWorld().addObject(con,currContainer.getX(),currContainer.getY());
                         getWorld().removeObject(currContainer);
                         currContainer = con;
                         currContainer.setOpgepakt(true,haak);
+                          
+                        haven.haak.setSpeed(currContainer.getWeight() / 2);
                     }
                     else
                     {
+                        Haven haven = (Haven)getWorld();
                         currContainer.setOpgepakt(false,null);
                         currContainer = null;
+                        
                     }
                 }
                 
@@ -98,5 +107,9 @@ public class Player extends Actor
             
             
         }
+    }
+    
+    public void setCurrNull() {
+         currContainer = null;
     }
 }

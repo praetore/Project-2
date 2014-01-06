@@ -22,6 +22,19 @@ public class Computer extends Actor
         this.haak = haak;
         this.vrachtwagen = vrachtwagen;
     }
+    
+    long pauseTime = 0;   
+    public boolean running()  
+    {  
+        long time = System.currentTimeMillis();  
+        return time > pauseTime;  
+    }  
+    public void pause(long delay)  
+    {  
+        long time = System.currentTimeMillis();  
+        pauseTime = time+delay;  
+    } 
+    
     public void act() 
     {
         info = Greenfoot.getMouseInfo();
@@ -31,6 +44,7 @@ public class Computer extends Actor
     public void onClick()
     { 
         nextContainer();
+        if (running()) {
         if(currContainer!= null)
         {
             if(!currContainer.getOpgepakt())
@@ -40,6 +54,7 @@ public class Computer extends Actor
                 {
                     kraan.goToTarget(target);
                     haak.goToTarget(target);
+                    
                 }
                 else
                 {
@@ -51,6 +66,7 @@ public class Computer extends Actor
                     target = null;
                     kraan.setAtTarget(false);
                     haak.setAtTarget(false);
+                    pause(2000);
                 }
             }
             else
@@ -68,9 +84,11 @@ public class Computer extends Actor
                     currContainer = null;
                     kraan.setAtTarget(false);
                     haak.setAtTarget(false);
+                    
                 }
             }
         }
+    }
         
     }
     public void nextContainer()
@@ -89,5 +107,5 @@ public class Computer extends Actor
         {
             currContainer = (Container)intersects.get(intersects.size()-1);
         }
-    }
+    } 
 }

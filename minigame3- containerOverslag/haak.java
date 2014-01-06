@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Haak extends Actor
 {
-    private int speed;
+    private int speed = 1;
     Kraan kraan;
     private boolean haveContainer = false;
     public boolean atTarget = false;
@@ -15,6 +15,7 @@ public class Haak extends Actor
     public void act()
     {
         setLocation(kraan.getX(),getY());
+        
     }
 
 /*
@@ -25,6 +26,14 @@ public class Haak extends Actor
         }
 
     }*/
+    
+    public void setSpeed(int i) {
+        
+        speed = i;
+
+    }
+    
+    
 
 
     public void goToTarget(Actor target)
@@ -33,9 +42,10 @@ public class Haak extends Actor
         {
             try
             {
+                Greenfoot.delay(speed);
                 if(getY() < target.getY())
                 {
-                    setLocation(getX(),getY()+1);
+                    setLocation(getX(),getY()+1 );
                 }
                 if(getY() > target.getY())
                 {

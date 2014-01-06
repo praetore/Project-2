@@ -25,7 +25,7 @@ public class Container extends Actor
         setImage(image + ".png");
     }
     public Container() {
-        int randomnr= Greenfoot.getRandomNumber(8)+1;
+        int randomnr= Greenfoot.getRandomNumber(7)+1;
         this.weight = randomnr;
         this.image = randomnr;
 
@@ -34,7 +34,9 @@ public class Container extends Actor
     public void act() {
         if(opgepakt)
         {
+             Haven haven = (Haven)getWorld();
             setLocation(haak.getX(),haak.getY());
+           // haven.haak.setSpeed(weight/2);
         }
     }
 

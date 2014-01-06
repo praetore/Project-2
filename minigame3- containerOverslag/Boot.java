@@ -31,28 +31,41 @@ public class Boot extends Actor
     {
 
 
-      //  System.out.println(rand);
+       //System.out.println(balance);
 
     }
 
 
 
 
-    public int getFirst() {
-        return gewichtArray.get(0);
+    public int getFirst(int i) {
+        try {
+            return gewichtArray.get(i);
+        }     catch (Exception e) {
+            System.out.println("fout");}
+        return i;
     }
+
 
     public void checkIntersectingObject() {
-        containers = getIntersectingObjects(Container.class);
+         containers = getIntersectingObjects(Container.class);
+        balance = 0;
 
         for(Object o : containers) {
-            Container c = (Container)o;
+            Container cont = (Container)o;
             // voor de volgorde van het pakken
-            gewichtArray.add(c.getWeight());
+            gewichtArray.add(cont.getWeight());
 
+            // balans
+            double extra = this.getY()-cont.getY();
 
+            extra /= 20;
+            balance += cont.getWeight()*extra;
 
 
         }
+        System.out.println(balance);
+        System.out.println(gewichtArray);
+        
     }
 }

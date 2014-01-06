@@ -9,7 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class VolgendeContainer extends Menu
 {
     Haven haven = (Haven)this.getWorld();
-
+    GreenfootImage image = new GreenfootImage(300,100);
+    public int nummer;
     /**
      * Act - do whatever the VolgendeContainer wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -17,17 +18,24 @@ public class VolgendeContainer extends Menu
 
 
 
-    public void nextContainer() {
+    public VolgendeContainer() {
 
 
-       // GreenfootImage img = new GreenfootImage(50,50);
-       // System.out.println(haven.first);
+        this.setImage(image);
+    }
+
+    public void setImage(int i) {
+       image.clear();
+       
+       setImage(i + ".png");
+       
+
 
 
     }
 
     public void act() 
     {
-       nextContainer();
+
     }    
 }

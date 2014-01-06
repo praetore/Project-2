@@ -16,13 +16,16 @@ public class Haven extends World
     Plaats plaats = new Plaats();
     Kraan kraan = new Kraan();
     Kraan kraanPC = new Kraan();
-    
+     Balans balans = new Balans();
+    Balans balansPC = new Balans();
+     
     Haak haak = new Haak(kraan);
     Haak haakPC = new Haak(kraanPC);
+     Player player = new Player(kraan,haak);
     VolgendeContainer label = new VolgendeContainer();
     Score score = new Score();
     private Boot bootie;
-    
+    public  int containerNummer = 0;
     public static int afstandx = 50;
     public static int afstandy = 20;
     public static int beginx = 100;
@@ -60,7 +63,7 @@ public class Haven extends World
     }
 
 
-    addObject(new Balans(),50,50);
+    addObject(balans,50,50);
     addObject(vrachtwagen,200,360);
     addObject(vrachtwagenPC,600,360);
     addObject(boot,190,170);
@@ -88,13 +91,13 @@ public class Haven extends World
      * afstandx is de afstand die zit tussen de containers horizontaal
      * afstandy is de afstand die zit tussen de containers verticaal
      */
-    for(int i=0;i<aantaly;i++)
+  /*  for(int i=0;i<aantaly;i++)
     {
         for(int n=0;n<aantalx;n++)
         {
             addObject(new Plaats(), beginx+afstandx*n,beginy+afstandy*i);
         }
-    }
+    } */
     for(int a=0;a<aantalz;a++)
     {
         for(int i=0;i<aantaly;i++)
@@ -222,14 +225,58 @@ public class Haven extends World
     addObject(kraan,170,130);
     addObject(kraanPC,570,130);
 
-    addObject(label,50,500);
+    addObject(label,50,540);
     boot.checkIntersectingObject();
-    first = boot.getFirst();
+     bootPC.checkIntersectingObject();
+    getNext(containerNummer);
+    
+    label.image.drawString("volgende: " + first, 150,50);
 
-
+    makeBalance();
    addObject(score,100,550);
-   addObject(new Player(kraan,haak),100,650);
-   addObject(new Computer(kraanPC,haakPC,vrachtwagenPC),100,650);
+   addObject(player,100,650);
+  addObject(new Computer(kraanPC,haakPC,vrachtwagenPC),100,650);
 }
+
+public void getNext(int i) {
+
+        makeBalance();
+        // volgende container
+        first = boot.getFirst(i);
+        System.out.println(first);
+        label.setImage(first);
+    }
+
+    public int getFirst() {
+        return first;
+    }
+
+    public void makeBalance() {
+        // balans
+        balans.setRotation(0);
+        boot.gewichtArray.clear();
+        boot.checkIntersectingObject();
+        balans.setDraai((int)boot.getBalance());
+        checkBalance();
+        System.out.println("balanceeeeee");
+    }
+
+    public void checkBalance() {
+      double b =  boot.getBalance();
+      if (b > 50 || b < -50) {
+          System.out.println("GAME OVER");
+         // addObject(new GameOver(),400,300);
+          Greenfoot.stop();
+      }
+    }
+
+    public void geefGewicht(int i) {
+      if (i == first) {
+          score.increaseScore(10);
+      } else {
+          score.increaseScore(-10);
+      }
+    }
+
 }
 

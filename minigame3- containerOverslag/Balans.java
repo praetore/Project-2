@@ -18,4 +18,8 @@ public class Balans extends Actor
 
 
     }    
+     public void setDraai(int i) {
+        this.setRotation(i);
+
+    }
 }
