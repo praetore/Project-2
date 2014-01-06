@@ -18,6 +18,8 @@ public class Haven extends World
     Kraan kraanPC = new Kraan();
      Balans balans = new Balans();
     Balans balansPC = new Balans();
+    Sound sound = new Sound();
+    Pauze pauze = new Pauze();
      
     Haak haak = new Haak(kraan);
     Haak haakPC = new Haak(kraanPC);
@@ -35,6 +37,7 @@ public class Haven extends World
     public static int aantalz = 3;
     public static int pcbeginx = 500;
     public static int pcbeginy = 130;
+    public GreenfootSound backgroundSound = new GreenfootSound("background.mp3");
 
     public Boot getBoot() {
         return bootie;
@@ -43,6 +46,7 @@ public class Haven extends World
     public Haven() {
         super(800, 600, 1);
 
+        backgroundSound.playLoop();
 
         setPaintOrder(Kraan.class, Haak.class, Container.class, Plaats.class);
 
@@ -62,7 +66,7 @@ public class Haven extends World
             }
     }
 
-
+    addObject(sound,750,560);
     addObject(balans,50,50);
     addObject(vrachtwagen,200,360);
     addObject(vrachtwagenPC,600,360);
@@ -224,7 +228,7 @@ public class Haven extends World
     addObject( haakPC,570,170);
     addObject(kraan,170,130);
     addObject(kraanPC,570,130);
-
+    addObject(pauze,380,560);
     addObject(label,50,540);
     boot.checkIntersectingObject();
      bootPC.checkIntersectingObject();

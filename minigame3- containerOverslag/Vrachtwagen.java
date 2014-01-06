@@ -20,10 +20,18 @@ public class Vrachtwagen extends Actor
     private int vrachtwagenSpeed = 1;
     int x,y;
     private int gewicht;
+
+    GreenfootSound containerSound = new GreenfootSound("bell.mp3");
+
     public Vrachtwagen(int x,int y)
+
     {
+        containerSound.setVolume(20);
         this.x = x;
         this.y = y;
+        if (x < 400) {
+        setRotation(180);
+        }
     }
     public Actor getIntersect(Class cl)
     {
@@ -53,9 +61,10 @@ public class Vrachtwagen extends Actor
              gewicht = currContainer.getWeight();
             haven.geefGewicht(gewicht);
             getWorld().removeObject(currContainer);
+
             currContainer = null;
            // haven.score.increaseScore();
-          
+            containerSound.play();
             setLocation(x,y);
             haven.containerNummer += 1;
            haven.getNext(haven.containerNummer);
